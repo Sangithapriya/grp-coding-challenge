@@ -1,9 +1,10 @@
 package com.code.challenge.palindrome.util;
 
+import com.google.common.annotations.VisibleForTesting;
+
 public class PalindromeUtil {
 
 	private static final String PALINDROME_STR = "Entered String is a Palindrome";
-
 	private static final String NOT_PALINDROME = "Entered String is NOT a Palindrome";
 
 	/**
@@ -26,6 +27,7 @@ public class PalindromeUtil {
 	 * @param number
 	 * @return
 	 */
+	@VisibleForTesting
 	private static boolean isSizeEven(int number) {
 		if (String.valueOf(number).length() % 2 == 0)
 			return true;
@@ -45,15 +47,12 @@ public class PalindromeUtil {
 		StringBuilder convertTopalindrome = new StringBuilder();
 		// String length divided by 2
 		convertTopalindrome.append(testPalindromeString.substring(0, testPalindromeString.length() / 2));
-		System.out.println("==convertTopalindrome==step1" + convertTopalindrome);
 
 		convertTopalindrome.append(testPalindromeString
 				.delete(testPalindromeString.length() / 2, testPalindromeString.length()).reverse());
-		System.out.println("==convertTopalindrome==step2" + convertTopalindrome);
 
 		// if the palindrome is greater than the original number
 		if (Integer.parseInt(convertTopalindrome.toString()) > number) {
-			System.out.println(" the next palindrome is " + convertTopalindrome);
 			return convertTopalindrome.toString();
 		} else {
 			// get the middle elements in case of even numbers
@@ -65,7 +64,6 @@ public class PalindromeUtil {
 			if (middleElementsInt + 11 < 99) {
 				convertTopalindrome.replace(convertTopalindrome.length() / 2 - 1, convertTopalindrome.length() / 2 + 1,
 						String.valueOf(middleElementsInt + 11));
-				System.out.println(" the next palindrome is " + convertTopalindrome);
 				return convertTopalindrome.toString();
 			} else {
 				String numberTillMiddleElement = convertTopalindrome.substring(0, convertTopalindrome.length() / 2 + 1);
